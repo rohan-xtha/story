@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StoryVerse</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            overflow-x: hidden;
+            animation: backgroundAnimation 10s infinite alternate;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: left; }
+            100% { background-position: right; }
+        }
+
+        /* Navigation Bar */
+        nav {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #f39c12;
+            font-size: 18px;
+            transition: color 0.3s;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #e67e22;
+        }
+
+        /* Profile Section */
+        .profile {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .profile img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Intro Section */
+        .intro {
+            max-width: 750px;
+            margin: auto;
+            text-align: center;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .highlight {
+            color: #f1c40f;
+            font-weight: bold;
+        }
+
+        .cta {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 18px;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        /* Book Section */
+        .book-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 50px;
+        }
+
+        .book {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            width: 320px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .book:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .book img {
+            width: 250px;
+            height: 250px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+
+        .book img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .book-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .book {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#">Video</a>
+        <a href="#">Ebook</a>
+        <a href="#">Register</a>
+        <a href="#">Login</a>
+    </nav>
+
+    <div class="profile">
+        <img src="owlb0upi.png" alt="Profile Picture">
+    </div>
+
+    <div class="intro">
+        <h1>Welcome to <span class="highlight">StoryVerse</span>!</h1>
+        <p>Dive into a world of imagination and thrilling stories with StoryVerse.</p>
+        <a href="#" class="cta">Start Your Adventure</a>
+    </div>
+
+    <h2 style="text-align:center;">📖 Featured Books</h2>
+    <div class="book-container">
+        <div class="book">
+            <h3>The Heart of the Fallen</h3>
+            <a href="#">
+                <img src="file:///C:/Users/rohan/Desktop/image%20for%20book'/chapter1/34fa9060-3dce-4cc8-94db-0f96d2037940.jpg" alt="Book Cover">
+            </a>
+            <p><strong>Author:</strong> John Doe</p>
+            <p>An epic adventure set in a mystical land.</p>
+        </div>
+        
+        <div class="book">
+            <h3>The Mystery of the Lost Key</h3>
+            <img src="https://via.placeholder.com/250" alt="Book Cover">
+            <p><strong>Author:</strong> Jane Smith</p>
+            <p>A suspenseful journey filled with unexpected twists.</p>
+        </div>
+    </div>
+
+</body>
+</html>
