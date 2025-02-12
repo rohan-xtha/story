@@ -69,13 +69,48 @@
             margin-top: 15px;
             color: #f39c12;
         }
+        footer {
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        footer p {
+            margin: 5px 0;
+        }
+        footer a {
+            color: #f1c40f;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav a {
+                margin: 5px 0;
+            }
+            .login-container {
+                margin: 50px 20px; /* Add some margin for smaller screens */
+                padding: 20px; /* Reduce padding for smaller screens */
+            }
+            .login-container h2 {
+                font-size: 24px; /* Adjust heading size */
+            }
+            .login-container input, .login-container button {
+                font-size: 14px; /* Adjust input and button size */
+            }
+        }
     </style>
 </head>
 <body>
 
     <nav>
         <a href="index.html">Home</a>
-        
     </nav>
 
     <div class="login-container">
@@ -92,36 +127,6 @@
     <footer>
         <p>&copy; 2023 StoryVerse. All rights reserved.</p>
         <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </footer>
-
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", async function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-            const scriptURL = "https://script.google.com/macros/s/AKfycbzI9Uo_3dG1gfSoOTadSXHnbl3hXRs3JozJr5KJl3nTyj7a74OJ-zPOOd4LJdqWkFeHPw/exec";  // Your Google Apps Script URL
-
-            try {
-                const response = await fetch(scriptURL, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: `action=login&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
-                });
-
-                const result = await response.json();
-
-                if (result.result === "success") {
-                    window.location.href = "home.html"; // Redirect to home page after successful login
-                } else {
-                    document.getElementById("message").innerText = "Incorrect username or password!";
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                document.getElementById("message").innerText = "Something went wrong: " + error.message;
-            }
-        });
-    </script>
-
-</body>
+    </footer ```html
+    </body>
 </html>
