@@ -5,168 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StoryVerse</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Global Styles */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        /* Navigation Bar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background: rgba(0, 0, 0, 0.8);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #f39c12;
-        }
-
-        /* Hamburger Menu for Mobile */
-        .menu-icon {
-            display: none;
-            font-size: 28px;
-            cursor: pointer;
-        }
-
-        /* Responsive Menu */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                right: 0;
-                background: rgba(0, 0, 0, 0.9);
-                width: 100%;
-                text-align: center;
-                padding: 10px;
-            }
-
-            .nav-links.show {
-                display: flex;
-            }
-
-            .menu-icon {
-                display: block;
-            }
-        }
-
-        /* Profile Section */
-        .profile img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin-top: 20px;
-            border: 3px solid #fff;
-        }
-
-        /* Intro Section */
-        .intro {
-            margin-top: 20px;
-            padding: 20px;
-        }
-
-        .highlight {
-            color: #f39c12;
-            font-weight: bold;
-        }
-
-        .cta {
-            display: inline-block;
-            background: #f39c12;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 10px;
-            text-decoration: none;
-            margin-top: 15px;
-            transition: background 0.3s ease;
-        }
-
-        .cta:hover {
-            background: #e67e22;
-        }
-
-        /* Book Section */
-        .book-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        .book {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .book:hover {
-            transform: scale(1.05);
-        }
-
-        .book img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 30px;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        footer a {
-            color: #f39c12;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-    </style>
-    <script>
-        function toggleMenu() {
-            document.querySelector(".nav-links").classList.toggle("show");
-        }
-    </script>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="menu-icon" onclick="toggleMenu()">☰</div>
-        <div class="nav-links">
-            <a href="video.html">Video</a>
-            <a href="chapter1.html">Story</a>
-        </div>
+    <nav>
+        <a href="vid1.html">Video</a>
+        <a href="chapter1.html">Story</a>
+        <a href="chapter1.html">Audio</a>
+        
+        
     </nav>
 
     <div class="profile">
-        <img src="owlb0upi.png" alt="Profile Picture">
+        <img src="file:///C:/Users/rohan/Desktop/first%20web%20site/image/owlb0upi.png" alt="Profile Picture">
     </div>
 
     <div class="intro">
@@ -175,26 +26,27 @@
         <a href="#" class="cta">Start Your Adventure</a>
     </div>
 
-    <h2>📖 Featured Books</h2>
+    <h2 style="text-align:center;">📖 Featured Books</h2>
     <div class="book-container">
         <div class="book">
             <h3>The Heart of the Fallen</h3>
             <a href="chapter1.html">
-                <img src="34fa9060-3dce-4cc8-94db-0f96d2037940.jpg" alt="Book Cover">
+                <img src="file:///C:/Users/rohan/Desktop/first%20web%20site/image/chapter1.jpg" alt="Book Cover">
             </a>
             <p>An epic adventure set in a mystical land.</p>
         </div>
+        
         <div class="book">
             <h3>The Broken Kingdom</h3>
             <a href="chapter2.html">
-                <img src="fgj5m8cn.png" alt="Book Cover">
+                <img src="file:///C:/Users/rohan/Desktop/image%20for%20book'/chapter2/fgj5m8cn.png" alt="Book Cover">
             </a>
             <p>A suspenseful journey filled with unexpected twists.</p>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2024 StoryVerse. All rights reserved.</p>
+        <p>&copy; 2023 StoryVerse. All rights reserved.</p>
         <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
     </footer>
 
