@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StoryVerse</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 3D Popup Styles */
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9); /* Match background with the page */
+            color: #e74c3c;
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            opacity: 0;
+            transform: scale(0);
+            animation: popupAnimation 0.6s forwards; /* Increased duration for smoother effect */
+        }
+
+        @keyframes popupAnimation {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .popup button {
+            background-color: #c0392b;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup button:hover {
+            background-color: #e74c3c;
+        }
+
+        /* Page Background */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+    <script>
+        // Simulate the user's login status (this can be updated based on real login state)
+        let isLoggedIn = false;  // Set to `true` when the user is logged in
+
+        function checkLoginStatus(event, link) {
+            // Skip check for Login and Register links
+            if (link === 'login.html' || link === 'register.html') {
+                return true;  // Allow navigation for login and register
+            }
+            
+            // If not logged in, show the 3D alert
+            if (!isLoggedIn) {
+                event.preventDefault();  // Prevent the default navigation
+                showPopup();  // Show the popup message
+            } else {
+                return true;  // Allow navigation for other links if logged in
+            }
+        }
+
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'block'; // Show popup
+            setTimeout(() => {
+                popup.style.display = 'none'; // Hide after animation ends
+            }, 3000);  // 3 seconds before hiding
+        }
+    </script>
+</head>
+<body>
+
+    <nav>
+        <!-- Add the checkLoginStatus function to all links, passing the correct destination URL -->
+        <a href="vid1.html" onclick="return checkLoginStatus(event, 'video.html')">Video</a>
+        <a href="chapter1.html" onclick="return checkLoginStatus(event, 'chapter1.html')">Story</a>
+        <a href="register.html" onclick="return checkLoginStatus(event, 'register.html')">Register</a>
+        <a href="login.html" onclick="return checkLoginStatus(event, 'login.html')">Login</a>
+    </nav>
+
+    <div class="profile">
+        <img src="owlb0upi.png" alt="Profile Picture">
+    </div>
+
+    <div class="intro">
+        <h1>Welcome to <span class="highlight">StoryVerse</span>!</h1>
+        <p>Dive into a world of imagination and thrilling stories with StoryVerse.</p>
+        <a href="#" class="cta" onclick="return checkLoginStatus(event, '#')">Start Your Adventure</a>
+    </div>
+
+    <h2 style="text-align:center;">📖 Featured Books</h2>
+    <div class="book-container">
+        <div class="book">
+            <h3>The Heart of the Fallen</h3>
+            <a href="chapter1.html" onclick="return checkLoginStatus(event, 'chapter1.html')">
+                <img src="chapter1.jpg" alt="Book Cover">
+            </a>
+            <p>An epic adventure set in a mystical land.</p>
+        </div>
+        
+        <div class="book">
+            <h3>The Broken Kingdom</h3>
+            <a href="chapter2.html" onclick="return checkLoginStatus(event, 'chapter2.html')">
+                <img src="chapter2.png" alt="Book Cover">
+            </a>
+            <p>A suspenseful journey filled with unexpected twists.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 StoryVerse. All rights reserved.</p>
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+    </footer>
+
+    <!-- 3D Popup -->
+    <div id="popup" class="popup">
+        You should login or register first!
+        <button onclick="document.getElementById('popup').style.display = 'none';">Close</button>
+    </div>
+
+</body>
+</html>
