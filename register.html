@@ -201,6 +201,7 @@
                 const data = await response.json();
 
                 if (response.ok) {
+                    alert("Registration successful! Please check your email to verify your account before logging in.");
                     window.location.href = "login.html";
                 } else {
                     alert(data.error || "Error registering. Please try again.");
