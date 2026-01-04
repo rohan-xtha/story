@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - StoryVerse</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #f1c40f;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .story-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .story-card h3 {
+            color: #f1c40f;
+            margin-top: 0;
+        }
+
+        .story-card p {
+            color: #ccc;
+        }
+
+        .add-story-form input[type="text"],
+        .add-story-form textarea {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .add-story-form button {
+            width: 100%;
+            padding: 12px;
+            background: #2ecc71;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .add-story-form button:hover {
+            background: #27ae60;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="#" id="logoutButton">Logout</a>
+    </nav>
+
+    <div class="container">
+        <h2>Welcome to StoryVerse</h2>
+        <div id="stories-list">
+            <!-- Stories will be loaded here -->
+        </div>
+
+        <h3>Add a New Story</h3>
+        <form id="addStoryForm" class="add-story-form">
+            <input type="text" id="storyTitle" placeholder="Story Title" required>
+            <textarea id="storyContent" placeholder="Write your story here..." rows="10" required></textarea>
+            <button type="submit">Add Story</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 StoryVerse. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const storiesList = document.getElementById('stories-list');
+            const logoutButton = document.getElementById('logoutButton');
+
+            // Check for session and redirect if not logged in
+            const accessToken = localStorage.getItem('supabase.auth.token');
+            if (!accessToken) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Fetch and display stories
+            async function fetchStories() {
+                try {
+                    const response = await fetch('http://localhost:3000/stories', {
+                        headers: {
+                            'Authorization': `Bearer ${JSON.parse(accessToken).access_token}`,
+                        },
+                    });
+                    const stories = await response.json();
+
+                    storiesList.innerHTML = ''; // Clear existing stories
+                    if (stories.length === 0) {
+                        storiesList.innerHTML = '<p>No stories yet. Be the first to add one!</p>';
+                        return;
+                    }
+
+                    stories.forEach(story => {
+                        const storyCard = document.createElement('div');
+                        storyCard.classList.add('story-card');
+                        storyCard.innerHTML = `
+                            <h3>${story.title}</h3>
+                            <p>${story.content}</p>
+                        `;
+                        storiesList.appendChild(storyCard);
+                    });
+                } catch (error) {
+                    console.error('Error fetching stories:', error);
+                    storiesList.innerHTML = '<p>Failed to load stories.</p>';
+                }
+            }
+
+            fetchStories();
+
+            // Add Story functionality
+            const addStoryForm = document.getElementById('addStoryForm');
+            addStoryForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const title = document.getElementById('storyTitle').value;
+                const content = document.getElementById('storyContent').value;
+
+                try {
+                    const response = await fetch('http://localhost:3000/stories', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${JSON.parse(accessToken).access_token}`,
+                        },
+                        body: JSON.stringify({ title, content }),
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        alert(data.message);
+                        document.getElementById('storyTitle').value = '';
+                        document.getElementById('storyContent').value = '';
+                        fetchStories(); // Refresh stories list
+                    } else {
+                        alert(data.error || 'Failed to add story');
+                    }
+                } catch (error) {
+                    console.error('Error adding story:', error);
+                    alert('An error occurred while adding the story.');
+                }
+            });
+
+            // Logout functionality
+            logoutButton.addEventListener('click', () => {
+                localStorage.removeItem('supabase.auth.token');
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+
+</body>
+
+</html>
